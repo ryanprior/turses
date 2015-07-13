@@ -364,10 +364,12 @@ LOGGING_LEVEL = 3
 # Twitter
 UPDATE_FREQUENCY = 300
 USE_HTTPS = True
+SHOW_RETWEETS = True
 
 TWITTER = {
     'update_frequency': UPDATE_FREQUENCY,
     'use_https': USE_HTTPS,
+    'show_retweets': SHOW_RETWEETS,
 }
 
 # Environment
