@@ -33,6 +33,14 @@ However, we recommend you to use HTTPS, especially in open WiFi networks where
 anybody could be sniffing packages and reading your personal information and
 communications.
 
+``turses`` can hide retweets if you prefer not to see them in
+timelines. Use the ``show_retweets`` option:
+
+::
+
+    [twitter]
+    show_retweets = false
+
 The other available option is ``update_frequency`` which controls how often (in
 seconds) the timelines should be automatically updated.
 
