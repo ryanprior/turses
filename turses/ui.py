@@ -32,7 +32,6 @@ from turses.config import (MOTION_KEY_BINDINGS, BUFFERS_KEY_BINDINGS,
                            TWEETS_KEY_BINDINGS, TIMELINES_KEY_BINDINGS,
                            META_KEY_BINDINGS, TURSES_KEY_BINDINGS,
 
-                           SHOW_RETWEETS,
                            configuration)
 from turses.models import is_DM, TWEET_MAXIMUM_CHARACTERS
 from turses.utils import encode, is_hashtag, is_username, is_url
@@ -1010,7 +1009,7 @@ class TimelineWidget(ScrollableListBox):
 
     def __init__(self, timeline=None):
         statuses = timeline if timeline else []
-        status_widgets = [StatusWidget(status) for status in statuses if SHOW_RETWEETS or not status.is_retweet]
+        status_widgets = [StatusWidget(status) for status in statuses]
         ScrollableListBox.__init__(self, status_widgets)
 
 
