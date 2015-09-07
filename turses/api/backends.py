@@ -26,6 +26,18 @@ def include_entities(func):
         return func(*args, **kwargs)
     return wrapper
 
+def check_retweets(func):
+    """
+    Injects the `include_rts=False` keyword into `func` if user has
+    disabled retweets.
+    """
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        if configuration.twitter['show_retweets'] is False:
+            kwargs['include_rts'] = False
+        return func(*args, **kwargs)
+    return wrapper
+
 # Decorators for converting data to `turses.models`
 
 
@@ -192,17 +204,20 @@ class TweepyApi(BaseTweepyApi, ApiAdapter):
 
     @to_status
     @include_entities
+    @check_retweets
     def get_home_timeline(self, **kwargs):
         tweets = self._api.home_timeline(**kwargs)
         return tweets
 
     @to_status
     @include_entities
+    @check_retweets
     def get_user_timeline(self, screen_name, **kwargs):
         return self._api.user_timeline(screen_name, **kwargs)
 
     @to_status
     @include_entities
+    @check_retweets
     def get_own_timeline(self, **kwargs):
         me = self.verify_credentials()
         return self._api.user_timeline(screen_name=me.screen_name, **kwargs)
